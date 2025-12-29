@@ -29,4 +29,14 @@ export const createJob = async (request:Request, response: Response) => {
     }
 }
 
-
+//get all job 
+export const getAllJob = async (request: Request, response: Response) => {
+   try {
+     const jobs = await Job.find();
+     return response.status(200).json(new ApiResponse(200, jobs, "Fetched alll jobs"))
+   } catch (error) {
+    return response.status(500).json(
+        new ApiResponse(500, null, "Failed to fetch jobs")
+    )
+   }
+}
